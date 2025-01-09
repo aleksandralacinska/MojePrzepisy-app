@@ -3,37 +3,32 @@ import { Ionicons } from "@expo/vector-icons";
 
 export default function TabsLayout() {
   return (
-    <Tabs
-      screenOptions={{
-        headerTitleAlign: "center", // Wyrównaj tytuł na środku
-        headerStyle: {
-          backgroundColor: "#f8f8f8", // Kolor tła nagłówka
-        },
-        headerTintColor: "#333", // Kolor tekstu w nagłówku
-      }}
-    >
+    <Tabs>
+      {/* Zakładka Home */}
       <Tabs.Screen
         name="index"
         options={{
-          title: "Strona główna",
+          title: "Home",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" color={color} size={size} />
           ),
         }}
       />
+      {/* Zakładka My Recipes */}
       <Tabs.Screen
         name="my-recipes"
         options={{
-          title: "Moje przepisy",
+          title: "My Recipes",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="restaurant" color={color} size={size} />
           ),
         }}
       />
+      {/* Zakładka Liked */}
       <Tabs.Screen
         name="liked"
         options={{
-          title: "Ulubione",
+          title: "Liked",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="heart" color={color} size={size} />
           ),

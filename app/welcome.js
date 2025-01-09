@@ -14,7 +14,8 @@ export default function WelcomeScreen() {
       <View style={styles.content}>
         <Text style={styles.title}>Witaj w aplikacji Moje Przepisy</Text>
 
-        <Pressable style={styles.button} onPress={() => router.push("/index")}>
+        {/* Przycisk przekierowujący do zakładek */}
+        <Pressable style={styles.button} onPress={() => router.push("/(tabs)")}>
           <Text style={styles.buttonText}>Przejdź do strony głównej</Text>
         </Pressable>
       </View>
