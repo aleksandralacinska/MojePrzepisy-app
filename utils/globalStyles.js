@@ -63,11 +63,12 @@ const globalStyles = StyleSheet.create({
   },
   textIngredient: {
     fontSize: 16,
-    color: "#333",
-    backgroundColor: "#f9f9f9",
+    color: "white",
+    backgroundColor: "transparent",
     padding: 8,
     borderRadius: 5,
-    marginVertical: 4,
+    marginVertical: 2,
+    marginHorizontal: 20,
   },
   welcomeTitle: {
     fontSize: 40,

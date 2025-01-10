@@ -3,14 +3,13 @@ import {
   View,
   Text,
   TextInput,
-  FlatList,
   Pressable,
   Alert,
   Keyboard,
   TouchableWithoutFeedback,
-  ScrollView,
   KeyboardAvoidingView,
   Platform,
+  FlatList,
 } from "react-native";
 import { useRouter } from "expo-router";
 import globalStyles from "../../utils/globalStyles";
@@ -59,73 +58,73 @@ export default function AddRecipeScreen() {
           style={{ flex: 1 }}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
-          <ScrollView
-            contentContainerStyle={{ flexGrow: 1 }}
-            keyboardShouldPersistTaps="handled"
-          >
-            <View style={globalStyles.container}>
-              <Text style={globalStyles.title}>Dodaj przepis</Text>
+          <FlatList
+            data={ingredients}
+            keyExtractor={(item, index) => index.toString()}
+            ListHeaderComponent={
+              <View style={globalStyles.container}>
+                <Text style={globalStyles.title}>Dodaj przepis</Text>
 
-              <TextInput
-                style={globalStyles.input}
-                placeholder="Nazwa potrawy"
-                value={name}
-                onChangeText={setName}
-              />
-
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <TextInput
-                  style={[globalStyles.input, { flex: 1 }]}
-                  placeholder="Nazwa i ilość składnika"
-                  value={ingredient}
-                  onChangeText={setIngredient}
+                  style={globalStyles.input}
+                  placeholder="Nazwa potrawy"
+                  value={name}
+                  onChangeText={setName}
                 />
-                <Pressable style={globalStyles.button} onPress={addIngredient}>
-                  <Text style={globalStyles.buttonText}>+ dodaj</Text>
+
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                  <TextInput
+                    style={[globalStyles.input, { flex: 1 }]}
+                    placeholder="Nazwa i ilość składnika"
+                    value={ingredient}
+                    onChangeText={setIngredient}
+                  />
+                  <Pressable style={globalStyles.button} onPress={addIngredient}>
+                    <Text style={globalStyles.buttonText}>+ dodaj</Text>
+                  </Pressable>
+                </View>
+              </View>
+            }
+            renderItem={({ item, index }) => (
+              <Pressable
+                onLongPress={() =>
+                  Alert.alert(
+                    "Usuń składnik",
+                    `Czy na pewno chcesz usunąć składnik "${item}"?`,
+                    [
+                      { text: "Anuluj", style: "cancel" },
+                      {
+                        text: "Usuń",
+                        style: "destructive",
+                        onPress: () =>
+                          setIngredients((prev) => prev.filter((_, i) => i !== index)),
+                      },
+                    ]
+                  )
+                }
+                style={{ marginVertical: 5 }}
+              >
+                <Text style={globalStyles.textIngredient}>• {item}</Text>
+              </Pressable>
+            )}
+            ListFooterComponent={
+              <View style={globalStyles.container}>
+                <TextInput
+                  style={globalStyles.inputBig}
+                  placeholder="Opis czynności"
+                  value={description}
+                  onChangeText={setDescription}
+                  multiline
+                  numberOfLines={4}
+                />
+
+                <Pressable style={globalStyles.button} onPress={saveRecipe}>
+                  <Text style={globalStyles.buttonText}>zapisz przepis</Text>
                 </Pressable>
               </View>
-
-              <FlatList
-                data={ingredients}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item, index }) => (
-                  <Pressable
-                    onLongPress={() =>
-                      Alert.alert(
-                        "Usuń składnik",
-                        `Czy na pewno chcesz usunąć składnik "${item}"?`,
-                        [
-                          { text: "Anuluj", style: "cancel" },
-                          {
-                            text: "Usuń",
-                            style: "destructive",
-                            onPress: () =>
-                              setIngredients((prev) => prev.filter((_, i) => i !== index)),
-                          },
-                        ]
-                      )
-                    }
-                    style={{ marginVertical: 5 }}
-                  >
-                    <Text style={globalStyles.textIngredient}>• {item}</Text>
-                  </Pressable>
-                )}
-              />
-
-              <TextInput
-                style={globalStyles.inputBig}
-                placeholder="Opis czynności"
-                value={description}
-                onChangeText={setDescription}
-                multiline
-                numberOfLines={4}
-              />
-
-              <Pressable style={globalStyles.button} onPress={saveRecipe}>
-                <Text style={globalStyles.buttonText}>zapisz przepis</Text>
-              </Pressable>
-            </View>
-          </ScrollView>
+            }
+            keyboardShouldPersistTaps="handled"
+          />
         </KeyboardAvoidingView>
       </BackgroundWrapper>
     </TouchableWithoutFeedback>
