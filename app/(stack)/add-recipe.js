@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useRouter } from "expo-router";
 import { View, Text, TextInput, FlatList, Pressable } from "react-native";
 import globalStyles from "../../utils/globalStyles";
+import BackgroundWrapper from "../../components/BackgroundWrapper";
 
 export default function AddRecipeScreen() {
   const [name, setName] = useState("");
@@ -25,46 +26,48 @@ export default function AddRecipeScreen() {
   };
 
   return (
-    <View style={globalStyles.container}>
-      <Text style={globalStyles.title}>Dodaj przepis</Text>
+    <BackgroundWrapper>
+      <View style={globalStyles.container}>
+        <Text style={globalStyles.title}>Dodaj przepis</Text>
 
-      <TextInput
-        style={globalStyles.input}
-        placeholder="Nazwa potrawy"
-        value={name}
-        onChangeText={setName}
-      />
-
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
         <TextInput
-          style={[globalStyles.input, { flex: 1 }]}
-          placeholder="Dodaj składnik"
-          value={ingredient}
-          onChangeText={setIngredient}
+          style={globalStyles.input}
+          placeholder="Nazwa potrawy"
+          value={name}
+          onChangeText={setName}
         />
-        <Pressable style={globalStyles.button} onPress={addIngredient}>
-          <Text style={globalStyles.buttonText}>Dodaj</Text>
+
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <TextInput
+            style={[globalStyles.input, { flex: 1 }]}
+            placeholder="Nazwa i ilość składnika"
+            value={ingredient}
+            onChangeText={setIngredient}
+          />
+          <Pressable style={globalStyles.button} onPress={addIngredient}>
+            <Text style={globalStyles.buttonText}>+ dodaj</Text>
+          </Pressable>
+        </View>
+
+        <FlatList
+          data={ingredients}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => <Text style={globalStyles.textIngredient}>• {item}</Text>}
+        />
+
+        <TextInput
+          style={globalStyles.inputBig}
+          placeholder="Opis czynności"
+          value={description}
+          onChangeText={setDescription}
+          multiline
+          numberOfLines={4}
+        />
+
+        <Pressable style={globalStyles.button} onPress={saveRecipe}>
+          <Text style={globalStyles.buttonText}>zapisz przepis</Text>
         </Pressable>
       </View>
-
-      <FlatList
-        data={ingredients}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => <Text style={globalStyles.text}>• {item}</Text>}
-      />
-
-      <TextInput
-        style={[globalStyles.input, { height: 100, textAlignVertical: "top" }]}
-        placeholder="Opis czynności"
-        value={description}
-        onChangeText={setDescription}
-        multiline
-        numberOfLines={4}
-      />
-
-      <Pressable style={globalStyles.button} onPress={saveRecipe}>
-        <Text style={globalStyles.buttonText}>Zapisz</Text>
-      </Pressable>
-    </View>
+    </BackgroundWrapper>
   );
 }
