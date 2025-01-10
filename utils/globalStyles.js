@@ -57,9 +57,17 @@ const globalStyles = StyleSheet.create({
     fontSize: 16,
     color: "#333",
   },
-  textIngredient: {
+  textW: {
     fontSize: 16,
     color: "white",
+  },
+  textIngredient: {
+    fontSize: 16,
+    color: "#333",
+    backgroundColor: "#f9f9f9",
+    padding: 8,
+    borderRadius: 5,
+    marginVertical: 4,
   },
   welcomeTitle: {
     fontSize: 40,
@@ -71,6 +79,43 @@ const globalStyles = StyleSheet.create({
   background: {
     flex: 1,
   },
+  recipeItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 10,
+    marginBottom: 10,
+    backgroundColor: "#ececec",
+    borderRadius: 10,
+  },
+  recipeImage: {
+    width: 60,
+    height: 60,
+    borderRadius: 8,
+  },
+  recipeInfo: {
+    flex: 1,
+    marginLeft: 10,
+  },
+  recipeTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "white",
+  },
+  recipeDescription: {
+    fontSize: 14,
+    color: "#666",
+    marginTop: 4,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginTop: 20,
+    marginBottom: 10,
+    color: "white",
+    textAlign: "left",
+  },
+  
+  
 });
 
 export default globalStyles;

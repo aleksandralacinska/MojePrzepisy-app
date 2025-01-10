@@ -15,6 +15,7 @@ import {
 import { useRouter } from "expo-router";
 import globalStyles from "../../utils/globalStyles";
 import BackgroundWrapper from "../../components/BackgroundWrapper";
+import useRecipesStore from "../../contexts/useRecipesStore";
 
 export default function AddRecipeScreen() {
   const [name, setName] = useState("");
@@ -23,6 +24,7 @@ export default function AddRecipeScreen() {
   const [description, setDescription] = useState("");
 
   const router = useRouter();
+  const addRecipe = useRecipesStore((state) => state.addRecipe);
 
   const addIngredient = () => {
     if (ingredient.trim()) {
@@ -31,26 +33,21 @@ export default function AddRecipeScreen() {
     }
   };
 
-  const removeIngredient = (index) => {
-    Alert.alert(
-      "Usuń składnik",
-      "Czy na pewno chcesz usunąć ten składnik?",
-      [
-        { text: "Anuluj", style: "cancel" },
-        {
-          text: "Usuń",
-          style: "destructive",
-          onPress: () => {
-            const updatedIngredients = ingredients.filter((_, i) => i !== index);
-            setIngredients(updatedIngredients);
-          },
-        },
-      ]
-    );
-  };
-
   const saveRecipe = () => {
-    console.log({ name, ingredients, description });
+    if (!name.trim()) {
+      Alert.alert("Błąd", "Nazwa potrawy jest wymagana");
+      return;
+    }
+
+    const newRecipe = {
+      id: Date.now().toString(),
+      title: name,
+      ingredients,
+      description,
+      image: require("../../assets/images/background.png"), // Tymczasowy obrazek
+    };
+
+    addRecipe(newRecipe); // Dodaj przepis do globalnego stanu
     alert("Przepis zapisany!");
     router.back();
   };
@@ -93,7 +90,21 @@ export default function AddRecipeScreen() {
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item, index }) => (
                   <Pressable
-                    onLongPress={() => removeIngredient(index)}
+                    onLongPress={() =>
+                      Alert.alert(
+                        "Usuń składnik",
+                        `Czy na pewno chcesz usunąć składnik "${item}"?`,
+                        [
+                          { text: "Anuluj", style: "cancel" },
+                          {
+                            text: "Usuń",
+                            style: "destructive",
+                            onPress: () =>
+                              setIngredients((prev) => prev.filter((_, i) => i !== index)),
+                          },
+                        ]
+                      )
+                    }
                     style={{ marginVertical: 5 }}
                   >
                     <Text style={globalStyles.textIngredient}>• {item}</Text>
