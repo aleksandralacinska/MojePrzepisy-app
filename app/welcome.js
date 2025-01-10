@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
     textAlign: "center",
-    marginBottom: 20,
+    marginTop: 25,
   },
   button: {
     position: "absolute",

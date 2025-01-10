@@ -9,7 +9,7 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.title}>Witaj w aplikacji Moje Przepisy!</Text>
+        <Text style={styles.title}>Co dzisiaj gotujemy?</Text>
         <Pressable style={styles.button} onPress={() => router.push("/(stack)/add-recipe")}>
           <Text style={styles.buttonText}>Dodaj przepis</Text>
         </Pressable>
