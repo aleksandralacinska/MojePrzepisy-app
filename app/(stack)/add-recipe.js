@@ -113,7 +113,7 @@ export default function AddRecipeScreen() {
                     ]
                   )
                 }
-                style={{ marginVertical: 5 }}
+                style={{ marginVertical: 1 }}
               >
                 <Text style={globalStyles.textIngredient}>• {item}</Text>
               </Pressable>
