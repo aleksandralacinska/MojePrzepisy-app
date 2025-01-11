@@ -4,13 +4,12 @@ import {
   Text,
   Image,
   ScrollView,
-  Pressable,
 } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import globalStyles from "../../../utils/globalStyles";
 import BackgroundWrapper from "../../../components/BackgroundWrapper";
+import BackButton from "../../../components/BackButton";
 import useRecipesStore from "../../../contexts/useRecipesStore";
-import { Ionicons } from "@expo/vector-icons";
 
 export default function RecipeDetailsScreen() {
   const { id } = useLocalSearchParams(); // Pobiera ID przepisu z parametrów URL
@@ -34,23 +33,7 @@ export default function RecipeDetailsScreen() {
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <View style={globalStyles.container}>
           {/* Przycisk powrotu */}
-          <Pressable
-            onPress={() => router.back()}
-            style={[
-              globalStyles.button,
-              {
-                position: "absolute",
-                top: 40,
-                left: 20,
-                zIndex: 10,
-                backgroundColor: "rgba(0, 0, 0, 0.5)",
-                padding: 8,
-                borderRadius: 50,
-              },
-            ]}
-          >
-            <Ionicons name="arrow-back" size={24} color="white" />
-          </Pressable>
+          <BackButton />
 
           {/* Zdjęcie potrawy */}
           <Image

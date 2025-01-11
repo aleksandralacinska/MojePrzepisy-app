@@ -14,6 +14,7 @@ import {
 import { useRouter } from "expo-router";
 import globalStyles from "../../utils/globalStyles";
 import BackgroundWrapper from "../../components/BackgroundWrapper";
+import BackButton from "../../components/BackButton";
 import useRecipesStore from "../../contexts/useRecipesStore";
 
 export default function AddRecipeScreen() {
@@ -47,8 +48,17 @@ export default function AddRecipeScreen() {
     };
 
     addRecipe(newRecipe); // Dodaj przepis do globalnego stanu
-    alert("Przepis zapisany!");
-    router.back();
+
+    Alert.alert(
+      "", // Brak nagłówka
+      "Przepis zapisany!", // Wiadomość dla użytkownika
+      [
+        {
+          text: "OK",
+          onPress: () => router.back(),
+        },
+      ]
+    );
   };
 
   return (
@@ -62,7 +72,8 @@ export default function AddRecipeScreen() {
             data={ingredients}
             keyExtractor={(item, index) => index.toString()}
             ListHeaderComponent={
-              <View style={globalStyles.container}>
+              <View style={[globalStyles.container, { paddingTop: 80 }]}>
+                <BackButton />
                 <Text style={globalStyles.title}>Dodaj przepis</Text>
 
                 <TextInput

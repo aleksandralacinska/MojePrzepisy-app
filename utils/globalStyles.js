@@ -25,7 +25,7 @@ const globalStyles = StyleSheet.create({
     padding: 10,
     margin: 5,
     backgroundColor: "#f9f9f9",
-    height: "50%",
+    height: 250,
     textAlignVertical: "top"
   },
   button: {
