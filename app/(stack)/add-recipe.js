@@ -86,7 +86,7 @@ export default function AddRecipeScreen() {
             ListHeaderComponent={
               <View style={[globalStyles.container, { paddingTop: 80 }]}>
                 <BackButton />
-                <Text style={globalStyles.title}>Dodaj przepis</Text>
+                {/* <Text style={globalStyles.title}>Dodaj przepis</Text> */}
 
                 <Pressable style={globalStyles.button} onPress={pickImage}>
                   <Text style={globalStyles.buttonText}>Wybierz zdjęcie</Text>

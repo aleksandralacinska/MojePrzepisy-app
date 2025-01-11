@@ -11,7 +11,15 @@ export default function HomeScreen() {
   return (
     <BackgroundWrapper>
       <SafeAreaView style={globalStyles.container}>
+        {/* Tekst powitalny */}
+        <Text style={[globalStyles.title, { marginBottom: 20, textAlign: "center" }]}>
+          Cieszymy się, że tutaj jesteś! Nasza aplikacja pozwala Ci wygodnie zarządzać swoimi przepisami kulinarnymi.
+        </Text>
+
+        {/* Nagłówek */}
         <Text style={globalStyles.title}>Co dzisiaj gotujemy?</Text>
+
+        {/* Przycisk */}
         <Pressable style={globalStyles.button} onPress={() => router.push("/(stack)/add-recipe")}>
           <Text style={globalStyles.buttonText}>Dodaj przepis</Text>
         </Pressable>
