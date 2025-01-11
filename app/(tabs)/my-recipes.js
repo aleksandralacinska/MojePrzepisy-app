@@ -33,12 +33,9 @@ export default function MyRecipesScreen() {
             {/* Zdjęcie przepisu */}
             <Image source={item.image} style={globalStyles.recipeImage} />
 
-            {/* Informacje o przepisie */}
+            {/* Nazwa przepisu */}
             <View style={globalStyles.recipeInfo}>
               <Text style={globalStyles.recipeTitle}>{item.title}</Text>
-              <Text style={globalStyles.recipeDescription}>
-                {item.description || "Brak opisu"}
-              </Text>
             </View>
           </Pressable>
         )}

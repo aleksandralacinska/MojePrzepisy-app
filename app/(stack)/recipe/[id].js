@@ -31,7 +31,7 @@ export default function RecipeDetailsScreen() {
   return (
     <BackgroundWrapper>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <View style={globalStyles.container}>
+        <View style={[globalStyles.container, { paddingTop: 80 }]}>
           {/* Przycisk powrotu */}
           <BackButton />
 
@@ -42,13 +42,12 @@ export default function RecipeDetailsScreen() {
               globalStyles.recipeImage,
               {
                 width: "90%",
-                height: "25%",
+                height: 200,
                 borderRadius: 10,
                 borderWidth: 2,
                 borderColor: "#fff",
                 marginBottom: 20,
-                alignSelf: "center",
-                marginTop: 60,
+                marginTop: 20, // Dodatkowy odstęp poniżej przycisku
               },
             ]}
           />
