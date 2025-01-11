@@ -10,7 +10,9 @@ import {
   KeyboardAvoidingView,
   Platform,
   FlatList,
+  Image,
 } from "react-native";
+import * as ImagePicker from "expo-image-picker"; // Importujemy bibliotekę
 import { useRouter } from "expo-router";
 import globalStyles from "../../utils/globalStyles";
 import BackgroundWrapper from "../../components/BackgroundWrapper";
@@ -22,10 +24,12 @@ export default function AddRecipeScreen() {
   const [ingredients, setIngredients] = useState([]);
   const [ingredient, setIngredient] = useState("");
   const [description, setDescription] = useState("");
+  const [image, setImage] = useState(null); // Stan na zdjęcie
 
   const router = useRouter();
   const addRecipe = useRecipesStore((state) => state.addRecipe);
 
+  // Funkcja dodawania składnika
   const addIngredient = () => {
     if (ingredient.trim()) {
       setIngredients([...ingredients, ingredient]);
@@ -33,6 +37,21 @@ export default function AddRecipeScreen() {
     }
   };
 
+  // Funkcja otwierająca galerię i wybierająca zdjęcie
+  const pickImage = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3], // Proporcje zdjęcia
+      quality: 1, // Jakość od 0 do 1
+    });
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri); // Przechowujemy URI wybranego zdjęcia
+    }
+  };
+
+  // Funkcja zapisywania przepisu
   const saveRecipe = () => {
     if (!name.trim()) {
       Alert.alert("Błąd", "Nazwa potrawy jest wymagana");
@@ -44,14 +63,14 @@ export default function AddRecipeScreen() {
       title: name,
       ingredients,
       description,
-      image: require("../../assets/images/background.png"), // Tymczasowy obrazek
+      image: image || require("../../assets/images/potrawa.png"), // Ustaw domyślne zdjęcie, jeśli użytkownik nie wybierze
     };
 
     addRecipe(newRecipe); // Dodaj przepis do globalnego stanu
 
     Alert.alert(
-      "", // Brak nagłówka
-      "Przepis zapisany!", // Wiadomość dla użytkownika
+      "",
+      "Przepis zapisany!",
       [
         {
           text: "OK",
@@ -76,6 +95,25 @@ export default function AddRecipeScreen() {
                 <BackButton />
                 <Text style={globalStyles.title}>Dodaj przepis</Text>
 
+                {/* Przycisk dodawania zdjęcia */}
+                <Pressable style={globalStyles.button} onPress={pickImage}>
+                  <Text style={globalStyles.buttonText}>Wybierz zdjęcie</Text>
+                </Pressable>
+
+                {/* Zdjęcie potrawy */}
+                {image && (
+                  <Image
+                    source={{ uri: image }}
+                    style={{
+                      width: 200,
+                      height: 150,
+                      borderRadius: 10,
+                      marginVertical: 10,
+                    }}
+                  />
+                )}
+
+                {/* Pole na nazwę potrawy */}
                 <TextInput
                   style={globalStyles.input}
                   placeholder="Nazwa potrawy"
@@ -83,6 +121,7 @@ export default function AddRecipeScreen() {
                   onChangeText={setName}
                 />
 
+                {/* Pole do dodawania składników */}
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <TextInput
                     style={[globalStyles.input, { flex: 1 }]}
@@ -113,7 +152,7 @@ export default function AddRecipeScreen() {
                     ]
                   )
                 }
-                style={{ marginVertical: 1 }}
+                style={{ marginVertical: 5 }}
               >
                 <Text style={globalStyles.textIngredient}>• {item}</Text>
               </Pressable>
@@ -129,6 +168,7 @@ export default function AddRecipeScreen() {
                   numberOfLines={4}
                 />
 
+                {/* Przycisk zapisywania przepisu */}
                 <Pressable style={globalStyles.button} onPress={saveRecipe}>
                   <Text style={globalStyles.buttonText}>zapisz przepis</Text>
                 </Pressable>
