@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, FlatList, Image, Pressable } from "react-native";
+import { View, Text, FlatList, Image, Pressable, Alert } from "react-native";
 import globalStyles from "../../utils/globalStyles";
 import BackgroundWrapper from "../../components/BackgroundWrapper";
 import useRecipesStore from "../../contexts/useRecipesStore";
@@ -7,7 +7,24 @@ import { useRouter } from "expo-router";
 
 export default function MyRecipesScreen() {
   const recipes = useRecipesStore((state) => state.recipes);
+  const removeRecipe = useRecipesStore((state) => state.removeRecipe);
   const router = useRouter();
+
+  // Funkcja do obsługi usuwania przepisu
+  const handleDeleteRecipe = (id, title) => {
+    Alert.alert(
+      "Usuń przepis",
+      `Czy na pewno chcesz usunąć przepis "${title}"?`,
+      [
+        { text: "Anuluj", style: "cancel" },
+        {
+          text: "Usuń",
+          style: "destructive",
+          onPress: () => removeRecipe(id),
+        },
+      ]
+    );
+  };
 
   if (!recipes.length) {
     return (
@@ -35,6 +52,7 @@ export default function MyRecipesScreen() {
               { marginBottom: 10 }, // Odstęp między kafelkami
             ]}
             onPress={() => router.push(`/recipe/${item.id}`)}
+            onLongPress={() => handleDeleteRecipe(item.id, item.title)} // Usuwanie przepisu
           >
             {/* Zdjęcie przepisu */}
             <Image source={item.image} style={globalStyles.recipeImage} />

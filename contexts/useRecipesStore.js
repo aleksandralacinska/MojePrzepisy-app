@@ -68,9 +68,17 @@ const initialRecipes = [
 
 const useRecipesStore = create((set) => ({
   recipes: initialRecipes,
+
+  // Funkcja dodawania przepisu
   addRecipe: (recipe) =>
     set((state) => ({
       recipes: [...state.recipes, recipe],
+    })),
+
+  // Funkcja usuwania przepisu
+  removeRecipe: (id) =>
+    set((state) => ({
+      recipes: state.recipes.filter((recipe) => recipe.id !== id),
     })),
 }));
 
