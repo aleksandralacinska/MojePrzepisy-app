@@ -35,7 +35,9 @@ export default function MyRecipesScreen() {
 
             {/* Nazwa przepisu */}
             <View style={globalStyles.recipeInfo}>
-              <Text style={globalStyles.recipeTitle}>{item.title}</Text>
+              <Text style={globalStyles.recipeTitleList}>
+                {item.title || "Brak tytułu"}
+              </Text>
             </View>
           </Pressable>
         )}

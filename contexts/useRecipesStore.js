@@ -22,6 +22,48 @@ const initialRecipes = [
     description: "Przygotuj ciasto naleśnikowe i usmaż naleśniki na patelni.",
     image: require("../assets/images/potrawa.png"),
   },
+  {
+    id: "4",
+    title: "Spaghetti Bolognese",
+    ingredients: ["Makaron", "Mięso mielone", "Sos pomidorowy", "Cebula", "Czosnek"],
+    description: "Ugotuj makaron, przygotuj sos bolognese i połącz wszystko razem.",
+    image: require("../assets/images/potrawa.png"),
+  },
+  {
+    id: "5",
+    title: "Sałatka grecka",
+    ingredients: ["Pomidor", "Ogórek", "Feta", "Oliwki", "Cebula"],
+    description: "Pokrój warzywa, dodaj ser feta i oliwki. Polej oliwą z oliwek.",
+    image: require("../assets/images/potrawa.png"),
+  },
+  {
+    id: "6",
+    title: "Naleśniki",
+    ingredients: ["Mleko", "Jajka", "Mąka", "Sól", "Cukier"],
+    description: "Przygotuj ciasto naleśnikowe i usmaż naleśniki na patelni.",
+    image: require("../assets/images/potrawa.png"),
+  },
+  {
+    id: "7",
+    title: "Spaghetti Bolognese",
+    ingredients: ["Makaron", "Mięso mielone", "Sos pomidorowy", "Cebula", "Czosnek"],
+    description: "Ugotuj makaron, przygotuj sos bolognese i połącz wszystko razem.",
+    image: require("../assets/images/potrawa.png"),
+  },
+  {
+    id: "8",
+    title: "Sałatka grecka",
+    ingredients: ["Pomidor", "Ogórek", "Feta", "Oliwki", "Cebula"],
+    description: "Pokrój warzywa, dodaj ser feta i oliwki. Polej oliwą z oliwek.",
+    image: require("../assets/images/potrawa.png"),
+  },
+  {
+    id: "9",
+    title: "Naleśniki",
+    ingredients: ["Mleko", "Jajka", "Mąka", "Sól", "Cukier"],
+    description: "Przygotuj ciasto naleśnikowe i usmaż naleśniki na patelni.",
+    image: require("../assets/images/potrawa.png"),
+  },
 ];
 
 const useRecipesStore = create((set) => ({

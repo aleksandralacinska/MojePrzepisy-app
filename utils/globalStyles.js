@@ -87,6 +87,7 @@ const globalStyles = StyleSheet.create({
     marginBottom: 10,
     backgroundColor: "#ececec",
     borderRadius: 10,
+    width: "100%",
   },
   recipeImage: {
     width: 60,
@@ -101,6 +102,11 @@ const globalStyles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     color: "white",
+  },
+  recipeTitleList: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "black",
   },
   recipeDescription: {
     fontSize: 14,
