@@ -9,10 +9,11 @@ export default function BackgroundWrapper({ children }) {
   return (
     <ImageBackground
       source={require("../assets/images/background.png")}
-      style={[globalStyles.background, { paddingBottom: insets.bottom + 60 }]} // Rozciągnięcie tła
+      style={[globalStyles.background, { paddingBottom: insets.bottom }]} // Dopasowanie
       resizeMode="cover"
     >
       {children}
     </ImageBackground>
+
   );
 }
