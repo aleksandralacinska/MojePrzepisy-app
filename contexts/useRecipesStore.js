@@ -98,6 +98,14 @@ const useRecipesStore = create((set) => ({
       ),
     })),
 
+  // Funkcja aktualizacji przepisu
+  updateRecipe: (id, updatedData) =>
+    set((state) => ({
+      recipes: state.recipes.map((recipe) =>
+        recipe.id === id ? { ...recipe, ...updatedData } : recipe
+      ),
+    })),
+
 }));
 
 export default useRecipesStore;

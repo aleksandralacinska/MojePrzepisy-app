@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -6,7 +6,7 @@ import {
   ScrollView,
   Pressable,
 } from "react-native";
-import { useLocalSearchParams } from "expo-router";
+import { useRouter, useLocalSearchParams } from "expo-router";
 import globalStyles from "../../../utils/globalStyles";
 import BackgroundWrapper from "../../../components/BackgroundWrapper";
 import BackButton from "../../../components/BackButton";
@@ -16,9 +16,18 @@ import { Ionicons } from "@expo/vector-icons";
 export default function RecipeDetailsScreen() {
   const { id } = useLocalSearchParams(); // Pobiera ID przepisu z parametrów URL
   const recipes = useRecipesStore((state) => state.recipes);
-  const toggleLike = useRecipesStore((state) => state.toggleLike);
+  const router = useRouter(); // Obsługuje nawigację
 
   const recipe = recipes.find((r) => r.id === id);
+
+  // Stan dla ikony serca
+  const [isLiked, setIsLiked] = useState(recipe?.isLiked || false);
+
+  // Funkcja obsługująca zmianę stanu serca
+  const toggleLike = () => {
+    useRecipesStore.getState().toggleLike(id);
+    setIsLiked((prev) => !prev);
+  };
 
   if (!recipe) {
     return (
@@ -44,16 +53,13 @@ export default function RecipeDetailsScreen() {
               position: "absolute",
               top: 40,
               left: 0,
-              paddingHorizontal: 20,
+              paddingHorizontal: 0,
               zIndex: 10,
             }}
           >
-            {/* BackButton w lewej kolumnie */}
             <BackButton style={{ position: "relative", top: 0 }} />
-
-            {/* Serduszko w prawej kolumnie */}
             <Pressable
-              onPress={() => toggleLike(recipe.id)}
+              onPress={toggleLike}
               style={{
                 backgroundColor: "rgba(0, 0, 0, 0.5)",
                 padding: 8,
@@ -61,7 +67,7 @@ export default function RecipeDetailsScreen() {
               }}
             >
               <Ionicons
-                name={recipe.isLiked ? "heart" : "heart-outline"}
+                name={isLiked ? "heart" : "heart-outline"}
                 size={24}
                 color="white"
               />
@@ -80,7 +86,7 @@ export default function RecipeDetailsScreen() {
                 borderWidth: 2,
                 borderColor: "#fff",
                 marginBottom: 20,
-                marginTop: 80, // Ustępuje miejsca dla ikon
+                marginTop: 80,
               },
             ]}
           />
@@ -125,6 +131,21 @@ export default function RecipeDetailsScreen() {
           >
             {recipe.description}
           </Text>
+
+          {/* Przyciski na dole */}
+          <Pressable
+            style={[
+              globalStyles.button,
+              {
+                alignSelf: "center",
+                marginTop: 30,
+                paddingHorizontal: 50,
+              },
+            ]}
+            onPress={() => router.push(`/edit-recipe/${recipe.id}`)}
+          >
+            <Text style={globalStyles.buttonText}>Edytuj</Text>
+          </Pressable>
         </View>
       </ScrollView>
     </BackgroundWrapper>
