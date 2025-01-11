@@ -19,7 +19,7 @@ export default function BackButton({ style }) {
           padding: 8,
           borderRadius: 50,
         },
-        style,
+        style, // Stylizacja przekazana przez props
       ]}
     >
       <Ionicons name="arrow-back" size={24} color="white" />
