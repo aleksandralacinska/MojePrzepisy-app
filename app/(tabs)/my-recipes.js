@@ -12,7 +12,7 @@ export default function MyRecipesScreen() {
   if (!recipes.length) {
     return (
       <BackgroundWrapper>
-        <View style={globalStyles.container}>
+        <View style={[globalStyles.container, { justifyContent: "center" }]}>
           <Text style={globalStyles.text}>Brak zapisanych przepisów</Text>
         </View>
       </BackgroundWrapper>
@@ -24,10 +24,16 @@ export default function MyRecipesScreen() {
       <FlatList
         data={recipes}
         keyExtractor={(item) => item.id}
-        contentContainerStyle={globalStyles.container}
+        contentContainerStyle={{
+          paddingVertical: 20, // Dodaje odstęp na górze i dole listy
+          paddingHorizontal: 10,
+        }}
         renderItem={({ item }) => (
           <Pressable
-            style={globalStyles.recipeItem}
+            style={[
+              globalStyles.recipeItem,
+              { marginBottom: 10 }, // Odstęp między kafelkami
+            ]}
             onPress={() => router.push(`/recipe/${item.id}`)}
           >
             {/* Zdjęcie przepisu */}
@@ -41,6 +47,10 @@ export default function MyRecipesScreen() {
             </View>
           </Pressable>
         )}
+        keyboardShouldPersistTaps="handled" // Pozwala przewijać mimo aktywnej klawiatury
+        scrollEnabled={true} // Włącza przewijanie
+        showsVerticalScrollIndicator={true} // Włącza wskaźnik przewijania
+        initialScrollIndex={0} // Ustawia, aby widok zaczynał się od pierwszego elementu
       />
     </BackgroundWrapper>
   );
