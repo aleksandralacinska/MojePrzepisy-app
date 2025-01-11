@@ -76,7 +76,7 @@ export default function RecipeDetailsScreen() {
 
           {/* Zdjęcie potrawy */}
           <Image
-            source={recipe.image}
+            source={typeof recipe.image === "string" ? { uri: recipe.image } : recipe.image}
             style={[
               globalStyles.recipeImage,
               {

@@ -55,7 +55,10 @@ export default function MyRecipesScreen() {
             onLongPress={() => handleDeleteRecipe(item.id, item.title)} // Usuwanie przepisu
           >
             {/* Zdjęcie przepisu */}
-            <Image source={item.image} style={globalStyles.recipeImage} />
+            <Image
+              source={typeof item.image === "string" ? { uri: item.image } : item.image}
+              style={globalStyles.recipeImage}
+            />
 
             {/* Nazwa przepisu */}
             <View style={globalStyles.recipeInfo}>

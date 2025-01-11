@@ -16,6 +16,7 @@ const globalStyles = StyleSheet.create({
     padding: 10,
     margin: 5,
     backgroundColor: "#f9f9f9",
+    fontFamily: "Montserrat_400Regular",
   },
   inputBig: {
     width: "100%",
@@ -26,7 +27,8 @@ const globalStyles = StyleSheet.create({
     margin: 5,
     backgroundColor: "#f9f9f9",
     height: 250,
-    textAlignVertical: "top"
+    textAlignVertical: "top",
+    fontFamily: "Montserrat_400Regular",
   },
   button: {
     backgroundColor: "#007bff",
@@ -40,26 +42,28 @@ const globalStyles = StyleSheet.create({
   buttonTextBig: {
     color: "white",
     fontSize: 18,
-    fontWeight: "600",
+    fontFamily: "Montserrat_400Regular",
   },
   buttonText: {
     color: "white",
     fontSize: 14,
-    fontWeight: "600",
+    fontFamily: "Montserrat_400Regular",
   },
   title: {
     fontSize: 20,
-    fontWeight: "bold",
     color: "white",
     marginBottom: 20,
+    fontFamily: "Montserrat_700Bold",
   },
   text: {
     fontSize: 16,
     color: "#333",
+    fontFamily: "Montserrat_400Regular",
   },
   textW: {
     fontSize: 16,
     color: "white",
+    fontFamily: "Montserrat_400Regular",
   },
   textIngredient: {
     fontSize: 16,
@@ -69,13 +73,14 @@ const globalStyles = StyleSheet.create({
     borderRadius: 5,
     marginVertical: 2,
     marginHorizontal: 20,
+    fontFamily: "Montserrat_400Regular",
   },
   welcomeTitle: {
     fontSize: 40,
-    fontWeight: "bold",
     color: "white",
     marginTop: 350,
     marginBottom: 150,
+    fontFamily: "Montserrat_700Bold",
   },
   background: {
     flex: 1,
@@ -100,18 +105,19 @@ const globalStyles = StyleSheet.create({
   },
   recipeTitle: {
     fontSize: 24,
-    fontWeight: "bold",
     color: "white",
+    fontFamily: "Montserrat_700Bold",
   },
   recipeTitleList: {
-    fontSize: 24,
-    fontWeight: "bold",
+    fontSize: 20,
     color: "black",
+    fontFamily: "Montserrat_400Regular",
   },
   recipeDescription: {
     fontSize: 14,
     color: "#666",
     marginTop: 4,
+    fontFamily: "Montserrat_400Regular",
   },
   sectionTitle: {
     fontSize: 18,
@@ -120,6 +126,7 @@ const globalStyles = StyleSheet.create({
     marginBottom: 10,
     color: "white",
     textAlign: "left",
+    fontFamily: "Montserrat_400Regular",
   },
   
   

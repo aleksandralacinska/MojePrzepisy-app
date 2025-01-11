@@ -105,7 +105,6 @@ const useRecipesStore = create((set) => ({
         recipe.id === id ? { ...recipe, ...updatedData } : recipe
       ),
     })),
-
 }));
 
 export default useRecipesStore;

@@ -12,7 +12,7 @@ import {
   FlatList,
   Image,
 } from "react-native";
-import * as ImagePicker from "expo-image-picker"; // Importujemy bibliotekę
+import * as ImagePicker from "expo-image-picker";
 import { useRouter } from "expo-router";
 import globalStyles from "../../utils/globalStyles";
 import BackgroundWrapper from "../../components/BackgroundWrapper";
@@ -24,12 +24,11 @@ export default function AddRecipeScreen() {
   const [ingredients, setIngredients] = useState([]);
   const [ingredient, setIngredient] = useState("");
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState(null); // Stan na zdjęcie
+  const [image, setImage] = useState(null);
 
   const router = useRouter();
   const addRecipe = useRecipesStore((state) => state.addRecipe);
 
-  // Funkcja dodawania składnika
   const addIngredient = () => {
     if (ingredient.trim()) {
       setIngredients([...ingredients, ingredient]);
@@ -37,21 +36,19 @@ export default function AddRecipeScreen() {
     }
   };
 
-  // Funkcja otwierająca galerię i wybierająca zdjęcie
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      aspect: [4, 3], // Proporcje zdjęcia
-      quality: 1, // Jakość od 0 do 1
+      aspect: [4, 3],
+      quality: 1,
     });
 
     if (!result.canceled) {
-      setImage(result.assets[0].uri); // Przechowujemy URI wybranego zdjęcia
+      setImage(result.assets[0].uri);
     }
   };
 
-  // Funkcja zapisywania przepisu
   const saveRecipe = () => {
     if (!name.trim()) {
       Alert.alert("Błąd", "Nazwa potrawy jest wymagana");
@@ -63,21 +60,17 @@ export default function AddRecipeScreen() {
       title: name,
       ingredients,
       description,
-      image: image || require("../../assets/images/potrawa.png"), // Ustaw domyślne zdjęcie, jeśli użytkownik nie wybierze
+      image: image || require("../../assets/images/potrawa.png"),
     };
 
-    addRecipe(newRecipe); // Dodaj przepis do globalnego stanu
+    addRecipe(newRecipe);
 
-    Alert.alert(
-      "",
-      "Przepis zapisany!",
-      [
-        {
-          text: "OK",
-          onPress: () => router.back(),
-        },
-      ]
-    );
+    Alert.alert("", "Przepis zapisany!", [
+      {
+        text: "OK",
+        onPress: () => router.back(),
+      },
+    ]);
   };
 
   return (
@@ -95,12 +88,10 @@ export default function AddRecipeScreen() {
                 <BackButton />
                 <Text style={globalStyles.title}>Dodaj przepis</Text>
 
-                {/* Przycisk dodawania zdjęcia */}
                 <Pressable style={globalStyles.button} onPress={pickImage}>
                   <Text style={globalStyles.buttonText}>Wybierz zdjęcie</Text>
                 </Pressable>
 
-                {/* Zdjęcie potrawy */}
                 {image && (
                   <Image
                     source={{ uri: image }}
@@ -113,7 +104,6 @@ export default function AddRecipeScreen() {
                   />
                 )}
 
-                {/* Pole na nazwę potrawy */}
                 <TextInput
                   style={globalStyles.input}
                   placeholder="Nazwa potrawy"
@@ -121,7 +111,6 @@ export default function AddRecipeScreen() {
                   onChangeText={setName}
                 />
 
-                {/* Pole do dodawania składników */}
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <TextInput
                     style={[globalStyles.input, { flex: 1 }]}
@@ -167,10 +156,8 @@ export default function AddRecipeScreen() {
                   multiline
                   numberOfLines={4}
                 />
-
-                {/* Przycisk zapisywania przepisu */}
                 <Pressable style={globalStyles.button} onPress={saveRecipe}>
-                  <Text style={globalStyles.buttonText}>zapisz przepis</Text>
+                  <Text style={globalStyles.buttonText}>Zapisz przepis</Text>
                 </Pressable>
               </View>
             }

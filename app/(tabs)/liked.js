@@ -16,7 +16,7 @@ export default function LikedScreen() {
     return (
       <BackgroundWrapper>
         <View style={[globalStyles.container, { justifyContent: "center" }]}>
-          <Text style={globalStyles.text}>Brak polubionych przepisów</Text>
+          <Text style={globalStyles.title}>Brak polubionych przepisów</Text>
         </View>
       </BackgroundWrapper>
     );
@@ -36,7 +36,10 @@ export default function LikedScreen() {
             style={globalStyles.recipeItem}
             onPress={() => router.push(`/recipe/${item.id}`)} // Nawigacja do widoku szczegółowego
           >
-            <Image source={item.image} style={globalStyles.recipeImage} />
+            <Image
+              source={typeof item.image === "string" ? { uri: item.image } : item.image}
+              style={globalStyles.recipeImage}
+            />
             <View style={globalStyles.recipeInfo}>
               <Text style={globalStyles.recipeTitleList}>{item.title}</Text>
             </View>
