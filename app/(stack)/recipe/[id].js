@@ -41,8 +41,8 @@ export default function RecipeDetailsScreen() {
 
   return (
     <BackgroundWrapper>
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <View style={[globalStyles.container, { paddingTop: 80 }]}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, alignItems: "center" }}>
+        <View style={{ width: "100%", paddingHorizontal: 20 }}>
           {/* Górny rząd z przyciskiem powrotu i serduszkiem */}
           <View
             style={{
@@ -53,7 +53,6 @@ export default function RecipeDetailsScreen() {
               position: "absolute",
               top: 40,
               left: 0,
-              paddingHorizontal: 0,
               zIndex: 10,
             }}
           >
@@ -86,13 +85,21 @@ export default function RecipeDetailsScreen() {
                 borderWidth: 2,
                 borderColor: "#fff",
                 marginBottom: 20,
-                marginTop: 80,
+                marginTop: 100, // Większy odstęp poniżej przycisków
+                alignSelf: "center", // Wyśrodkowanie zdjęcia
               },
             ]}
           />
 
-          {/* Nazwa potrawy */}
-          <Text style={globalStyles.recipeTitle}>{recipe.title}</Text>
+          {/* Nazwa potrawy (wyśrodkowana) */}
+          <Text
+            style={[
+              globalStyles.recipeTitle,
+              { textAlign: "center", marginBottom: 20 },
+            ]}
+          >
+            {recipe.title}
+          </Text>
 
           {/* Sekcja składników */}
           <Text

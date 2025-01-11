@@ -121,12 +121,11 @@ const globalStyles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: "bold",
     marginTop: 20,
     marginBottom: 10,
     color: "white",
     textAlign: "left",
-    fontFamily: "Montserrat_400Regular",
+    fontFamily: "Montserrat_700Bold",
   },
   
   

@@ -10,7 +10,9 @@ import {
   KeyboardAvoidingView,
   Platform,
   FlatList,
+  Image,
 } from "react-native";
+import * as ImagePicker from "expo-image-picker";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import globalStyles from "../../../utils/globalStyles";
 import BackgroundWrapper from "../../../components/BackgroundWrapper";
@@ -30,6 +32,7 @@ export default function EditRecipeScreen() {
   const [ingredients, setIngredients] = useState([]);
   const [ingredient, setIngredient] = useState("");
   const [description, setDescription] = useState("");
+  const [image, setImage] = useState(null); // Stan dla zdjęcia
 
   useEffect(() => {
     // Wypełnianie danych przepisu
@@ -37,6 +40,7 @@ export default function EditRecipeScreen() {
       setName(recipeToEdit.title);
       setIngredients(recipeToEdit.ingredients);
       setDescription(recipeToEdit.description);
+      setImage(recipeToEdit.image); // Ustawienie istniejącego zdjęcia
     }
   }, [recipeToEdit]);
 
@@ -44,6 +48,19 @@ export default function EditRecipeScreen() {
     if (ingredient.trim()) {
       setIngredients([...ingredients, ingredient]);
       setIngredient("");
+    }
+  };
+
+  const pickImage = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri); // Ustawienie wybranego zdjęcia
     }
   };
 
@@ -61,6 +78,7 @@ export default function EditRecipeScreen() {
               title: name,
               ingredients,
               description,
+              image: image || recipeToEdit.image, // Zachowanie starego zdjęcia, jeśli nie zmieniono
             });
             router.back(); // Powrót do szczegółów przepisu
           },
@@ -82,7 +100,26 @@ export default function EditRecipeScreen() {
             ListHeaderComponent={
               <View style={[globalStyles.container, { paddingTop: 80 }]}>
                 <BackButton />
-                <Text style={globalStyles.title}>Edytuj przepis</Text>
+
+                {/* Przycisk edycji zdjęcia */}
+                <Pressable style={globalStyles.button} onPress={pickImage}>
+                  <Text style={globalStyles.buttonText}>Zmień zdjęcie</Text>
+                </Pressable>
+
+                {/* Wyświetlanie zdjęcia */}
+                {image && (
+                  <Image
+                    source={typeof image === "string" ? { uri: image } : image}
+                    style={{
+                      width: "90%",
+                      height: 250,
+                      borderRadius: 10,
+                      borderWidth: 2,
+                      borderColor: "#fff",
+                      marginVertical: 10,
+                    }}
+                  />
+                )}
 
                 <TextInput
                   style={globalStyles.input}

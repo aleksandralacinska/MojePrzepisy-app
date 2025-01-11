@@ -86,7 +86,6 @@ export default function AddRecipeScreen() {
             ListHeaderComponent={
               <View style={[globalStyles.container, { paddingTop: 80 }]}>
                 <BackButton />
-                {/* <Text style={globalStyles.title}>Dodaj przepis</Text> */}
 
                 <Pressable style={globalStyles.button} onPress={pickImage}>
                   <Text style={globalStyles.buttonText}>Wybierz zdjęcie</Text>
@@ -96,9 +95,11 @@ export default function AddRecipeScreen() {
                   <Image
                     source={{ uri: image }}
                     style={{
-                      width: 200,
-                      height: 150,
+                      width: "90%",
+                      height: 200,
                       borderRadius: 10,
+                      borderWidth: 2,
+                      borderColor: "#fff",
                       marginVertical: 10,
                     }}
                   />
