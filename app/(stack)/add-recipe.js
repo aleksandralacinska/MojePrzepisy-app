@@ -29,6 +29,7 @@ export default function AddRecipeScreen() {
   const router = useRouter();
   const addRecipe = useRecipesStore((state) => state.addRecipe);
 
+  // Funkcja dodająca składnik do listy
   const addIngredient = () => {
     if (ingredient.trim()) {
       setIngredients([...ingredients, ingredient]);
@@ -36,6 +37,7 @@ export default function AddRecipeScreen() {
     }
   };
 
+  // Funkcja umoliwiająca wybranie zdjęcia z galerii telefonu
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -49,12 +51,14 @@ export default function AddRecipeScreen() {
     }
   };
 
+  // Funkcja zapisująca przepis
   const saveRecipe = () => {
     if (!name.trim()) {
       Alert.alert("Błąd", "Nazwa potrawy jest wymagana");
       return;
     }
 
+    // Tworzenie obiektu nowego przepisu
     const newRecipe = {
       id: Date.now().toString(),
       title: name,
@@ -74,6 +78,7 @@ export default function AddRecipeScreen() {
   };
 
   return (
+    // chowanie klawiatury
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <BackgroundWrapper>
         <KeyboardAvoidingView

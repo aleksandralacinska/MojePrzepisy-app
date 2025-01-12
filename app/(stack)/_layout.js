@@ -11,7 +11,7 @@ export default function StackLayout() {
   });
 
   if (!fontsLoaded) {
-    // Wskaźnik ładowania fontów
+    // ładowanie fontów
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color="#007bff" />

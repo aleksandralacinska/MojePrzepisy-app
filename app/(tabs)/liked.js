@@ -7,9 +7,9 @@ import { useRouter } from "expo-router";
 
 export default function LikedScreen() {
   const recipes = useRecipesStore((state) => state.recipes);
-  const router = useRouter(); // Używane do nawigacji
+  const router = useRouter();
 
-  // Filtrujemy ulubione przepisy
+  // Filtrowanie ulubionych przepisów
   const likedRecipes = useMemo(() => recipes.filter((recipe) => recipe.isLiked), [recipes]);
 
   if (!likedRecipes.length) {
@@ -34,7 +34,7 @@ export default function LikedScreen() {
         renderItem={({ item }) => (
           <Pressable
             style={globalStyles.recipeItem}
-            onPress={() => router.push(`/recipe/${item.id}`)} // Nawigacja do widoku szczegółowego
+            onPress={() => router.push(`/recipe/${item.id}`)} // Nawigacja do widoku szczegółów
           >
             <Image
               source={typeof item.image === "string" ? { uri: item.image } : item.image}

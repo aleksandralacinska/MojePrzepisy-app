@@ -20,30 +20,31 @@ import BackButton from "../../../components/BackButton";
 import useRecipesStore from "../../../contexts/useRecipesStore";
 
 export default function EditRecipeScreen() {
-  const { id } = useLocalSearchParams(); // Pobranie ID przepisu
-  const recipes = useRecipesStore((state) => state.recipes);
-  const updateRecipe = useRecipesStore((state) => state.updateRecipe);
+  const { id } = useLocalSearchParams(); // Pobieranie ID przepisu
+  const recipes = useRecipesStore((state) => state.recipes); // Pobieranie przepisów ze stanu globalnego
+  const updateRecipe = useRecipesStore((state) => state.updateRecipe); // Funkcja aktualizacji przepisu
   const router = useRouter();
 
   const recipeToEdit = recipes.find((recipe) => recipe.id === id);
 
-  // Stany lokalne na dane przepisu
+  // Stany lokalne na informacje w przepisie
   const [name, setName] = useState("");
   const [ingredients, setIngredients] = useState([]);
   const [ingredient, setIngredient] = useState("");
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState(null); // Stan dla zdjęcia
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
-    // Wypełnianie danych przepisu
+    // Wypełnianie danych w przepisie
     if (recipeToEdit) {
       setName(recipeToEdit.title);
       setIngredients(recipeToEdit.ingredients);
       setDescription(recipeToEdit.description);
-      setImage(recipeToEdit.image); // Ustawienie istniejącego zdjęcia
+      setImage(recipeToEdit.image);
     }
   }, [recipeToEdit]);
 
+  // Dodanie składnika do listy
   const addIngredient = () => {
     if (ingredient.trim()) {
       setIngredients([...ingredients, ingredient]);
@@ -51,6 +52,7 @@ export default function EditRecipeScreen() {
     }
   };
 
+  // Funkcja obsługująca wybór zdjęcia
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -60,10 +62,11 @@ export default function EditRecipeScreen() {
     });
 
     if (!result.canceled) {
-      setImage(result.assets[0].uri); // Ustawienie wybranego zdjęcia
+      setImage(result.assets[0].uri);
     }
   };
 
+  // Funkcja zapisu wprowadzonych zmian
   const saveEditedRecipe = () => {
     Alert.alert(
       "Potwierdzenie",
@@ -78,9 +81,9 @@ export default function EditRecipeScreen() {
               title: name,
               ingredients,
               description,
-              image: image || recipeToEdit.image, // Zachowanie starego zdjęcia, jeśli nie zmieniono
+              image: image || recipeToEdit.image,
             });
-            router.back(); // Powrót do szczegółów przepisu
+            router.back();
           },
         },
       ]

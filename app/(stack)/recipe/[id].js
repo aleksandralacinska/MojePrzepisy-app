@@ -14,16 +14,16 @@ import useRecipesStore from "../../../contexts/useRecipesStore";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function RecipeDetailsScreen() {
-  const { id } = useLocalSearchParams(); // Pobiera ID przepisu z parametrów URL
+  const { id } = useLocalSearchParams();
   const recipes = useRecipesStore((state) => state.recipes);
-  const router = useRouter(); // Obsługuje nawigację
+  const router = useRouter();
 
   const recipe = recipes.find((r) => r.id === id);
 
-  // Stan dla ikony serca
+  // Stan dla ikony serduszko
   const [isLiked, setIsLiked] = useState(recipe?.isLiked || false);
 
-  // Funkcja obsługująca zmianę stanu serca
+  // Funkcja obsługująca zmianę stanu serduszka
   const toggleLike = () => {
     useRecipesStore.getState().toggleLike(id);
     setIsLiked((prev) => !prev);
@@ -43,7 +43,7 @@ export default function RecipeDetailsScreen() {
     <BackgroundWrapper>
       <ScrollView contentContainerStyle={{ flexGrow: 1, alignItems: "center" }}>
         <View style={{ width: "100%", paddingHorizontal: 20 }}>
-          {/* Górny rząd z przyciskiem powrotu i serduszkiem */}
+          {/* Górny panel z przyciskiem powrotu i serduszkiem */}
           <View
             style={{
               flexDirection: "row",
@@ -85,13 +85,13 @@ export default function RecipeDetailsScreen() {
                 borderWidth: 2,
                 borderColor: "#fff",
                 marginBottom: 20,
-                marginTop: 100, // Większy odstęp poniżej przycisków
-                alignSelf: "center", // Wyśrodkowanie zdjęcia
+                marginTop: 100,
+                alignSelf: "center",
               },
             ]}
           />
 
-          {/* Nazwa potrawy (wyśrodkowana) */}
+          {/* Nazwa potrawy */}
           <Text
             style={[
               globalStyles.recipeTitle,

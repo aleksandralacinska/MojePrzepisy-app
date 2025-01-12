@@ -42,14 +42,14 @@ export default function MyRecipesScreen() {
         data={recipes}
         keyExtractor={(item) => item.id}
         contentContainerStyle={{
-          paddingVertical: 20, // Dodaje odstęp na górze i dole listy
+          paddingVertical: 20,
           paddingHorizontal: 10,
         }}
         renderItem={({ item }) => (
           <Pressable
             style={[
               globalStyles.recipeItem,
-              { marginBottom: 10 }, // Odstęp między kafelkami
+              { marginBottom: 10 },
             ]}
             onPress={() => router.push(`/recipe/${item.id}`)}
             onLongPress={() => handleDeleteRecipe(item.id, item.title)} // Usuwanie przepisu
@@ -68,10 +68,10 @@ export default function MyRecipesScreen() {
             </View>
           </Pressable>
         )}
-        keyboardShouldPersistTaps="handled" // Pozwala przewijać mimo aktywnej klawiatury
-        scrollEnabled={true} // Włącza przewijanie
-        showsVerticalScrollIndicator={true} // Włącza wskaźnik przewijania
-        initialScrollIndex={0} // Ustawia, aby widok zaczynał się od pierwszego elementu
+        keyboardShouldPersistTaps="handled"
+        scrollEnabled={true}
+        showsVerticalScrollIndicator={true}
+        initialScrollIndex={0}
       />
     </BackgroundWrapper>
   );
