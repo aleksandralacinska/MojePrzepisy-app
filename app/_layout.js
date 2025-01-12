@@ -11,6 +11,7 @@ export default function RootLayout() {
   });
 
   if (!fontsLoaded) {
+    // Wyświetlenie wskaźnika ładowania, gdy fonty nie są jeszcze załadowane
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color="#007bff" />
@@ -21,17 +22,18 @@ export default function RootLayout() {
   return (
     <Stack
       screenOptions={{
-        headerShown: false,
+        headerShown: false, // Ukrycie nagłówka nawigacji
       }}
     />
   );
 }
 
+// Style dla wskaźnika ładowania
 const styles = StyleSheet.create({
   loadingContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fff", // Możesz dostosować kolor tła
+    backgroundColor: "#fff",
   },
 });

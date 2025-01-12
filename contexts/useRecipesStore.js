@@ -1,5 +1,6 @@
 import { create } from "zustand";
 
+// początkowy zestaw przepisów w aplikacji
 const initialRecipes = [
   {
     id: "1",

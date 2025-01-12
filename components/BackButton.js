@@ -3,12 +3,13 @@ import { Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 
+// Komponent przycisku powrotu
 export default function BackButton({ style }) {
   const router = useRouter();
 
   return (
     <Pressable
-      onPress={() => router.back()}
+      onPress={() => router.back()} // Funkcja powrotu do poprzedniego widoku
       style={[
         {
           position: "absolute",
@@ -19,10 +20,11 @@ export default function BackButton({ style }) {
           padding: 8,
           borderRadius: 50,
         },
-        style, // Stylizacja przekazana przez props
+        style,
       ]}
     >
       <Ionicons name="arrow-back" size={24} color="white" />
+      {/* Ikona strzałki powrotu */}
     </Pressable>
   );
 }

@@ -13,8 +13,9 @@ export default function WelcomeScreen() {
       resizeMode="cover"
     >
       <Text style={globalStyles.welcomeTitle}>Witaj w aplikacji Moje Przepisy</Text>
+      {/* Nagłówek powitalny */}
 
-      <Pressable style={globalStyles.button} onPress={() => router.push("/(tabs)")}>
+      <Pressable style={globalStyles.button} onPress={() => router.push("/(tabs)")}> 
         <Text style={globalStyles.buttonTextBig}>Przejdź do strony głównej</Text>
       </Pressable>
     </ImageBackground>
