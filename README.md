@@ -6,7 +6,7 @@ Moje Przepisy to aplikacja mobilna, która umożliwia użytkownikom zarządzanie
 
 ---
 
-## Funkcjonalności
+# Funkcjonalności
 
 - **Dodawanie przepisów**:
   - Możliwość podania nazwy potrawy, listy składników, opisu oraz załączenia zdjęcia z galerii telefonu.
@@ -25,7 +25,7 @@ Moje Przepisy to aplikacja mobilna, która umożliwia użytkownikom zarządzanie
 
 ---
 
-### Technologie
+# Technologie
 
 - **React Native**: Tworzenie aplikacji mobilnej.
 - **Expo**: Przyspieszenie rozwoju i zarządzania projektem React Native.
@@ -44,7 +44,7 @@ Moje Przepisy to aplikacja mobilna, która umożliwia użytkownikom zarządzanie
 
 ---
 
-#### Instrukcja obsługi
+# Instrukcja obsługi
 
 - Aby przejść do ekranu głównego, należy nacisnąć na przycisk "przejdź do ekranu głównego" na ekranie powitalnym
 - Na dole strony widoczny jest panel nawigacji z trzema zakładkami. Aby przejść do danego widoku, naley wybrać odpowiednią zakładkę.
@@ -63,7 +63,7 @@ Moje Przepisy to aplikacja mobilna, która umożliwia użytkownikom zarządzanie
 - Strzałka powrotu umieszczona w lewym górnym rogu umożliwia powrót do widoku zakładki, w której znajdowaliśmy się poprzednio.
 
 
-##### Uruchomienie aplikacji na urządzenia mobilnym
+# Uruchomienie aplikacji na urządzenia mobilnym
 
 - upewnij się, że masz zainstalowane odpowiednie narzędzia: Node.js, npm, Expo CLI
 - przejdź do katalogu projektu
