@@ -62,6 +62,7 @@ Moje Przepisy to aplikacja mobilna, która umożliwia użytkownikom zarządzanie
 - Wszystkie widoki, których zawartość przekracza rozmiar ekranu, można scrollować w górę i w dół.
 - Strzałka powrotu umieszczona w lewym górnym rogu umożliwia powrót do widoku zakładki, w której znajdowaliśmy się poprzednio.
 
+---
 
 # Uruchomienie aplikacji na urządzenia mobilnym
 
